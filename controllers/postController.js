@@ -5,9 +5,9 @@ const Post = require('../models/postModel')
 const Group = require('../models/groupModel')
 
 module.exports.create = async (req, res, next) => {
-  req.body.group = req.body.group || process.env.MAIN_GROUP_ID
-  const post = new Post({ ...req.body, creator: req.user._id })
-  const group = await Group.findById(req.body.group)
+  const { id } = req.params
+  const post = new Post({ ...req.body, group: id, creator: req.user })
+  const group = await Group.findById(id)
   group.posts.push(post)
   await post.save()
   await group.save()

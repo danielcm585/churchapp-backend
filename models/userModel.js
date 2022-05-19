@@ -5,6 +5,11 @@ const Group = require('./groupModel')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
+  role: {
+    type: String,
+    enum: [ 'ADMIN', 'USER' ],
+    default: 'USER'
+  },
   username: {
     type: String,
     required: true,
@@ -21,7 +26,19 @@ const userSchema = new Schema({
   },
   name: {
     type: String,
-    required: true,
+    required: true
+  },
+  age: {
+    type: Number,
+    required: true
+  },
+  gender: {
+    type: String,
+    enum: [ 'MALE', 'FEMALE' ]
+  },
+  phone: {
+    type: String,
+    required: true
   },
   photo: {
     type: String,
