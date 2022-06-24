@@ -46,14 +46,14 @@ module.exports.join = async (req, res, next) => {
       pushNotif({
         title: `${user.name} has just joined ${group.name}`,
         body: 'Please welcome our new member',
-        destination: 'GROUP',
+        destination: 'Group',
         link: { group: group._id }
       }, member._id)
     }
     pushNotif({
       title: `You are accepted to ${group.name}`,
       body: 'Please introduce yourself to the group',
-      destination: 'GROUP',
+      destination: 'Group',
       link: { group: group._id }
       // TODO: Give link to group page
     }, user._id)

@@ -14,7 +14,7 @@ module.exports.isLoggedIn = (req, res, next) => {
     req.user = user
   }
   catch (err) {
-    return res.status(500).json(`Error: ${err.message}`)
+    return res.status(401).json(`Token expired`)
   }
   next()
 }

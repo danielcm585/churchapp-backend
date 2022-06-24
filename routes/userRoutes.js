@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.post('/register', catchAsync(user.register))
 router.post('/login', catchAsync(user.login))
-router.post('/refresh', user.refresh)
+router.post('/refresh', catchAsync(user.refresh))
 router.delete('/logout', catchAsync(user.logout))
 router.put('/', isLoggedIn, catchAsync(user.edit))
 router.delete('/', isLoggedIn, catchAsync(user.delete))

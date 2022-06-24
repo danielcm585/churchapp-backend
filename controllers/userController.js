@@ -8,6 +8,7 @@ const Session = require('../models/sessionModel')
 const Notification = require('../models/notificationModel')
 
 module.exports.register = async (req, res, next) => {
+  console.log(req.body)
   const user = new User({ ...req.body })
   if (user.password.length < 6) res.status(400).json('Password must be at least 6 characters')
   const sameUsername = await User.findOne({ username: user.username })

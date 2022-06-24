@@ -12,6 +12,11 @@ const groupSchema = new Schema({
     required: true,
     unique: true
   },
+  photo: {
+    type: String,
+    default: "https://i.ibb.co/B2cSS4q/download.png"
+  },
+  description: String,
   status: {
     type: String,
     enum: [ 'PRIVATE', 'PUBLIC' ],
