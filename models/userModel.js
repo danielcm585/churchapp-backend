@@ -24,21 +24,12 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  name: {
-    type: String,
-    required: true
-  },
-  age: {
-    type: Number,
-    required: true
-  },
+  name: String,
+  phone: String,
+  birth: Date,
   gender: {
     type: String,
     enum: [ 'MALE', 'FEMALE' ]
-  },
-  phone: {
-    type: String,
-    required: true
   },
   photo: {
     type: String,

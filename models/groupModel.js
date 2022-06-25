@@ -14,7 +14,7 @@ const groupSchema = new Schema({
   },
   photo: {
     type: String,
-    default: "https://i.ibb.co/B2cSS4q/download.png"
+    default: "https://i.ibb.co/k69tkmG/image9.jpg"
   },
   description: String,
   status: {
@@ -38,7 +38,7 @@ const groupSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }],
-  top: [{
+  announcements: [{
     type: Schema.Types.ObjectId,
     ref: 'Post'
   }],
