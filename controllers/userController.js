@@ -12,8 +12,6 @@ module.exports.register = async (req, res, next) => {
   if (user.password.length < 6) res.status(400).json('Password must be at least 6 characters')
   const sameUsername = await User.findOne({ username: user.username })
   if (sameUsername) return res.status(400).json('Username already in use')
-  const sameEmail = await User.findOne({ email: user.email })
-  if (sameEmail) return res.status(400).json('Email already in use')
   try {
     const hashedPassword = await bcrypt.hash(user.password, 10)
     user.password = hashedPassword
@@ -26,7 +24,13 @@ module.exports.register = async (req, res, next) => {
   user.groups.push(group)
   await group.save()
   await user.save()
-  res.status(200).json(user)
+  // res.status(200).json(user)
+  this.login({
+    body: {
+      username: req.body.username,
+      password: req.body.password
+    }
+  }, res)
 }
 
 module.exports.login = async (req, res, next) => {
@@ -63,6 +67,14 @@ module.exports.logout = async (req, res, next) => {
 }
 
 module.exports.edit = async (req, res, next) => {
+  if (req.email) {
+    const sameEmail = await User.findOne({ email: req.email })
+    if (sameEmail) return res.status(400).json('Email already in use')
+  }
+  if (req.username) {
+    const sameUsername = await User.findOne({ username: req.username })
+    if (sameUsername) return res.status(400).json('Username already in use')
+  }
   const user = await User.findByIdAndUpdate(req.user._id, { ...req.body, editedAt: Date.now() })
   res.status(200).json(user)
 }
