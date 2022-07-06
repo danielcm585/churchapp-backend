@@ -68,7 +68,8 @@ module.exports.logout = async (req, res, next) => {
 
 module.exports.get = async (req, res, next) => {
   const user = await User.findById(req.user._id)
-  res.status(200).json(user)
+  const { password, ...userData } = user._doc
+  res.status(200).json(userData)
 }
 
 module.exports.edit = async (req, res, next) => {
