@@ -66,6 +66,11 @@ module.exports.logout = async (req, res, next) => {
   res.status(200).json('Logged out successfully')
 }
 
+module.exports.get = async (req, res, next) => {
+  const user = await User.findById(req.user._id)
+  res.status(200).json(user)
+}
+
 module.exports.edit = async (req, res, next) => {
   if (req.email) {
     const sameEmail = await User.findOne({ email: req.email })

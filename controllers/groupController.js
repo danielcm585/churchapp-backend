@@ -15,12 +15,12 @@ module.exports.create = async (req, res, next) => {
   res.status(200).json(group)
 }
 
-module.exports.all = async (req, res, next) => {
+module.exports.getAll = async (req, res, next) => {
   const user = await User.findById(req.user._id).populate('groups')
   res.status(200).json(user.groups)
 }
 
-module.exports.one = async (req, res, next) => {
+module.exports.getOne = async (req, res, next) => {
   const { id } = req.params
   const group = await Group.findById(id)
   await group.populate('leaders','-password')
