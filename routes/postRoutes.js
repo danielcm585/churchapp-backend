@@ -6,7 +6,8 @@ const { isLoggedIn, isPostCreator, isGroupMember, isAdmin } = require('../middle
 
 const router = express.Router()
 
-router.post('/:id', isLoggedIn, isGroupMember, isAdmin, catchAsync(post.create))
+router.post('/', isLoggedIn, isAdmin, catchAsync(post.createMain))
+router.post('/:id', isLoggedIn, isGroupMember, catchAsync(post.create))
 router.get('/:id', isLoggedIn, isGroupMember, catchAsync(post.all))
 router.put('/:id', isLoggedIn, isPostCreator, catchAsync(post.edit))
 router.delete('/:id', isLoggedIn, isPostCreator, catchAsync(post.delete))

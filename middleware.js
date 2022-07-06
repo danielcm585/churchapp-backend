@@ -52,8 +52,7 @@ module.exports.isEventCreator = async (req, res, next) => {
 }
 
 module.exports.isAdmin = async (req, res, next) => {
-  const { id } = req.params
-  if (id == process.env.MAIN_GROUP_ID && req.user.role != 'ADMIN')
+  if (req.user.role != 'ADMIN')
     return res.status(403).json('You are not an administrator')
   next()
 }

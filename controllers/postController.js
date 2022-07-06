@@ -14,6 +14,16 @@ module.exports.create = async (req, res, next) => {
   res.status(200).json(post)
 }
 
+module.exports.createMain = async (req, res, next) => {
+  const id = process.env.MAIN_GROUP_ID
+  const post = new Post({ ...req.body, group: id, creator: req.user })
+  const group = await Group.findById(id)
+  group.posts.push(post)
+  await post.save()
+  await group.save()
+  res.status(200).json(post)
+}
+
 module.exports.all = async (req, res, next) => {
   const { id } = req.params
   const posts = await Post.find({ group: id }).populate('creator')
