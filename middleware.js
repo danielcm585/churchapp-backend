@@ -4,14 +4,16 @@ require('dotenv').config()
 const Group = require('./models/groupModel')
 const Post = require('./models/postModel')
 const Event = require('./models/eventModel')
+const User = require('./models/userModel')
 
-module.exports.isLoggedIn = (req, res, next) => {
+module.exports.isLoggedIn = async (req, res, next) => {
   const authHeader = req.headers.authorization
   const token = authHeader && authHeader.split(' ')[1]
   if (!token) return res.status(401).json('Not authorized')
   try {
     const user = jwt.verify(token, process.env.TOKEN)
-    req.user = user
+    const userData = await User.findById(user._id)
+    req.user = userData
   }
   catch (err) {
     return res.status(401).json(`Token expired`)
