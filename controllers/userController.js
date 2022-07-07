@@ -66,10 +66,19 @@ module.exports.logout = async (req, res, next) => {
   res.status(200).json('Logged out successfully')
 }
 
-module.exports.get = async (req, res, next) => {
+module.exports.getMe = async (req, res, next) => {
   const user = await User.findById(req.user._id)
   const { password, ...userData } = user._doc
   res.status(200).json(userData)
+}
+
+module.exports.getAll = async (req, res, next) => {
+  let users = await User.find({})
+  users = users.map(user => {
+    const { password, ...userData } = user._doc
+    return userData
+  })
+  res.status(200).json(users)
 }
 
 module.exports.edit = async (req, res, next) => {

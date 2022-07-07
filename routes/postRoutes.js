@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.post('/', isLoggedIn, isAdmin, catchAsync(post.createMain))
 router.post('/:id', isLoggedIn, isGroupMember, catchAsync(post.create))
-router.get('/:id', isLoggedIn, isGroupMember, catchAsync(post.all))
+router.get('/:id', isLoggedIn, isGroupMember, catchAsync(post.getAll))
 router.put('/:id', isLoggedIn, isPostCreator, catchAsync(post.edit))
 router.delete('/:id', isLoggedIn, isPostCreator, catchAsync(post.delete))
 
