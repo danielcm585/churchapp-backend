@@ -14,20 +14,27 @@ Content-Type: application/json
 
 POST http://localhost:3001/user/refresh
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1MTBjYWUxZDUzYzM4NWZlM2Q4ZGMiLCJpYXQiOjE2NTcxODU0NzQsImV4cCI6MTY1NzE4NjQ3NH0.EPgYVSrDAiY4ENFfA7VU-RMW9761jRQEo9ccD7uhDzI
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1MTBjYWUxZDUzYzM4NWZlM2Q4ZGMiLCJpYXQiOjE2NTcxODU0NzR9.6YwWjvkX9dkCL1Eh5eIOCkv81Neq9PWGeYePW96I0RE"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1MTBjYWUxZDUzYzM4NWZlM2Q4ZGMiLCJpYXQiOjE2NTcxODc1NDd9.2gPzMoSnhtcwIt_Ec0m_rQb3ZDTThQxEWiRHDpDDiI8"
 }
 
 ###
 
-GET http://localhost:3001/user/
+PUT http://localhost:3001/user/change-password
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1MTBjYWUxZDUzYzM4NWZlM2Q4ZGMiLCJpYXQiOjE2NTcxODU0NzQsImV4cCI6MTY1NzE4NjQ3NH0.EPgYVSrDAiY4ENFfA7VU-RMW9761jRQEo9ccD7uhDzI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1MTBjYWUxZDUzYzM4NWZlM2Q4ZGMiLCJpYXQiOjE2NTcxODc1NDcsImV4cCI6MTY1NzE4ODU0N30.jVRA-F_rTV61MOwjdbKn2f9Pz_CulZU23Oa8weBUelA
+
+{
+  "oldPassword": "test123",
+  "newPassword": "pass123"
+}
 
 ###
 
 DELETE http://localhost:3001/user/logout
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1MTBjYWUxZDUzYzM4NWZlM2Q4ZGMiLCJpYXQiOjE2NTcxODU0NzQsImV4cCI6MTY1NzE4NjQ3NH0.EPgYVSrDAiY4ENFfA7VU-RMW9761jRQEo9ccD7uhDzI
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1MTBjYWUxZDUzYzM4NWZlM2Q4ZGMiLCJpYXQiOjE2NTcxODc2MjB9.RJX6NSykrktljnV3bO1Bn62YCfqG4WzKUrK1A7eGFd0"
+}

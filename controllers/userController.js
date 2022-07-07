@@ -17,7 +17,7 @@ module.exports.register = async (req, res, next) => {
     user.password = hashedPassword
   }
   catch (err) {
-    res.send(500).json(`Error: ${err.message}`)
+    res.status(500).json(`Error: ${err.message}`)
   }
   const group = await Group.findById(process.env.MAIN_GROUP_ID)
   group.members.push(user)
@@ -94,9 +94,26 @@ module.exports.edit = async (req, res, next) => {
   res.status(200).json(user)
 }
 
+module.exports.changePassword = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id)
+    const validPassword = await bcrypt.compare(req.body.oldPassword, user.password)
+    if (!validPassword) return res.status(400).json('Wrong old password')
+    if (req.body.newPassword.length < 6) 
+      return res.status(400).json('Password must be at least 6 characters')
+    const hashedPassword = await bcrypt.hash(req.body.newPassword, 10)
+    user.password = hashedPassword
+    await user.save()
+    res.status(200).json('Password changed')
+  }
+  catch (err) {
+    res.status(500).json(`Error: ${err.message}`)
+  }
+}
+
 module.exports.delete = async (req, res, next) => {
   const user = await User.findById(req.user._id)
   await Group.findByIdAndUpdate(process.env.MAIN_GROUP_ID, { $pull: { members: req.user._id } })
   await user.deleteOne()
-  res.status(200).json('User deleted successfully')
+  res.status(200).json('User deleted')
 }

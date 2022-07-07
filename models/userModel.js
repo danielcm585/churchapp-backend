@@ -30,7 +30,7 @@ const userSchema = new Schema({
   birth: Date,
   gender: {
     type: String,
-    enum: [ 'MALE', 'FEMALE' ]
+    enum: [ 'Male', 'Female' ]
   },
   photo: {
     type: String,

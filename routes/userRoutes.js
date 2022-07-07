@@ -13,6 +13,7 @@ router.delete('/logout', catchAsync(user.logout))
 router.get('/me', isLoggedIn, catchAsync(user.getMe))
 router.get('/', isLoggedIn, catchAsync(user.getAll))
 router.put('/', isLoggedIn, catchAsync(user.edit))
+router.put('/change-password', isLoggedIn, catchAsync(user.changePassword))
 router.delete('/', isLoggedIn, catchAsync(user.delete))
 
 module.exports = router
