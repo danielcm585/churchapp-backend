@@ -2,7 +2,7 @@ const express = require('express');
 
 const group = require('../controllers/groupController')
 const { catchAsync } = require('../utils');
-const { isLoggedIn, isGroupLeader, isGroupMember } = require('../middleware')
+const { isLoggedIn, isGroupLeader, isGroupMember } = require('../middleware');
 
 const router = express.Router()
 
@@ -14,6 +14,7 @@ router.post('/accept-user/:id', isLoggedIn, isGroupLeader, catchAsync(group.acce
 router.post('/reject-user/:id', isLoggedIn, isGroupLeader, catchAsync(group.rejectUser))
 router.post('/accept-group/:id', isLoggedIn, catchAsync(group.acceptGroup))
 router.post('/reject-group/:id', isLoggedIn, catchAsync(group.rejectGroup))
+Router.post('/make-leader/:id', isLoggedIn, isGroupLeader, catchAsync(group.makeLeader))
 router.post('/invite/:id', isLoggedIn, isGroupLeader, catchAsync(group.invite))
 router.post('/leave/:id', isLoggedIn, isGroupMember, catchAsync(group.leave))
 router.put('/:id', isLoggedIn, isGroupLeader, catchAsync(group.edit))

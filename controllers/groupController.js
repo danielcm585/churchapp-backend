@@ -143,7 +143,7 @@ module.exports.rejectGroup = async (req, res, next) => {
   const { id } = req.params
   const user = await User.findById(req.user._id)
   const group = await Group.findById(id)
-  if (!group.invites.includes(user._id)) return res.status(403).json('Not invited')
+  if (!group.invites.includes(user._id)) return res.status(400).json('Not invited')
   group.invites.pull(user._id)
   user.invites.pull(group._id)
   for (leader of group.leaders) {
@@ -156,6 +156,15 @@ module.exports.rejectGroup = async (req, res, next) => {
   }
   await group.save()
   res.status(200).json('Rejected group successfully')
+}
+
+module.exports.makeLeader = async (req, res, next) => {
+  const { id } = req.params
+  const group = await Group.findById(id)
+  if (group.leaders.includes(req.body.user)) return res.status(400).json('Already a leader')
+  group.leaders.push(req.body.user)
+  await group.save()
+  res.status(200).json('Successfully make leader')
 }
 
 module.exports.invite = async (req, res, next) => {
