@@ -38,24 +38,24 @@ module.exports.login = async (req, res, next) => {
   if (!user) return res.status(403).json('User not found')
   const validPassword = await bcrypt.compare(req.body.password, user.password)
   if (!validPassword) res.status(400).json('Wrong password')
-  await user.populate('groups')
+  // await user.populate('groups')
   await user.populate('notifications')
   const { password, ...userData } = user._doc
-  const token = jwt.sign(userData, process.env.TOKEN, { expiresIn: '10000s' })
-  const refreshToken = jwt.sign(userData, process.env.REFRESH_TOKEN)
+  const token = jwt.sign({ _id: userData._id }, process.env.TOKEN, { expiresIn: '30s' })
+  const refreshToken = jwt.sign({ _id: userData._id }, process.env.REFRESH_TOKEN)
   const session = new Session({ token: refreshToken })
   await session.save()
   res.status(200).json({ token: token, refreshToken: refreshToken, user: userData })
 }
 
-module.exports.refresh = (req, res, next) => {
+module.exports.refresh = async (req, res, next) => {
   const refreshToken = req.body.token
   if (!refreshToken) return res.status(401).json('Invalid refresh token')
-  const session = Session.findOne({ token: refreshToken })
+  const session = await Session.findOne({ token: refreshToken })
   if (!session) return res.send(403).json('Refresh token not found')
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN, (err, user) => {
     if (err) return res.send(403).json(err.message)
-    const token = jwt.sign({ user }, process.env.TOKEN, { expiresIn: '10000s' })
+    const token = jwt.sign({ _id: user._id }, process.env.TOKEN, { expiresIn: '30s' })
     res.status(200).json({ token: token })
   })
 }

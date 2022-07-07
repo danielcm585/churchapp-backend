@@ -5,7 +5,6 @@ const Schema = mongoose.Schema
 const sessionSchema = new Schema({
   token: {
     type: String,
-    unique: true,
     required: true
   },
   // startedAt: {

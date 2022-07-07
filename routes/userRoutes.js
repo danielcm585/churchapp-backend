@@ -10,7 +10,7 @@ router.post('/register', catchAsync(user.register))
 router.post('/login', catchAsync(user.login))
 router.post('/refresh', catchAsync(user.refresh))
 router.delete('/logout', catchAsync(user.logout))
-router.get('/', isLoggedIn, catchAsync(user.get)) // TODO: 
+router.get('/', isLoggedIn, catchAsync(user.get))
 router.put('/', isLoggedIn, catchAsync(user.edit))
 router.delete('/', isLoggedIn, catchAsync(user.delete))
 
