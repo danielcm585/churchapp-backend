@@ -41,7 +41,7 @@ module.exports.login = async (req, res, next) => {
   // await user.populate('groups')
   await user.populate('notifications')
   const { password, ...userData } = user._doc
-  const token = jwt.sign({ _id: userData._id }, process.env.TOKEN, { expiresIn: '30s' })
+  const token = jwt.sign({ _id: userData._id }, process.env.TOKEN, { expiresIn: '1000s' })
   const refreshToken = jwt.sign({ _id: userData._id }, process.env.REFRESH_TOKEN)
   const session = new Session({ token: refreshToken })
   await session.save()
@@ -55,7 +55,7 @@ module.exports.refresh = async (req, res, next) => {
   if (!session) return res.send(403).json('Refresh token not found')
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN, (err, user) => {
     if (err) return res.send(403).json(err.message)
-    const token = jwt.sign({ _id: user._id }, process.env.TOKEN, { expiresIn: '30s' })
+    const token = jwt.sign({ _id: user._id }, process.env.TOKEN, { expiresIn: '1000s' })
     res.status(200).json({ token: token })
   })
 }
