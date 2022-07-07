@@ -72,6 +72,12 @@ module.exports.getMe = async (req, res, next) => {
   res.status(200).json(userData)
 }
 
+module.exports.getOne = async (req, res, next) => {
+  const user = await User.findById(req.body._id)
+  const { password, ...userData } = user._doc
+  res.status(200).json(userData)
+}
+
 module.exports.getAll = async (req, res, next) => {
   let users = await User.find({})
   users = users.map(user => {

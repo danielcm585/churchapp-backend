@@ -26,8 +26,20 @@ module.exports.createMain = async (req, res, next) => {
 
 module.exports.getAll = async (req, res, next) => {
   const { id } = req.params
-  const posts = await Post.find({ group: id }).populate('creator')
+  const posts = await Post.find({ group: id }).populate('creator', '-password')
   res.status(200).json(posts)
+}
+
+module.exports.getAllMain = async (req, res, next) => {
+  const { id } = req.params
+  const posts = await Post.find({ group: process.env.MAIN_GROUP_ID }).populate('creator', '-password')
+  res.status(200).json(posts)
+}
+
+module.exports.getOne = async (req, res, next) => {
+  const { id } = req.params
+  const post = await Post.findById(id).populate('creator', '-password')
+  res.status(200).json(post)
 }
 
 module.exports.edit = async (req, res, next) => {
