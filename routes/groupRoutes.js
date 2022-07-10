@@ -8,6 +8,7 @@ const router = express.Router()
 
 router.post('/', isLoggedIn, catchAsync(group.create))
 router.get('/', isLoggedIn, catchAsync(group.getAll))
+router.get('/mine', isLoggedIn, catchAsync(group.getMine))
 router.get('/:id', isLoggedIn, isGroupMember, catchAsync(group.getOne))
 router.post('/join/:id', isLoggedIn, catchAsync(group.join))
 router.post('/accept-user/:id', isLoggedIn, isGroupLeader, catchAsync(group.acceptUser))

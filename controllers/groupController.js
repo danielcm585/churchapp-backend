@@ -16,6 +16,11 @@ module.exports.create = async (req, res, next) => {
 }
 
 module.exports.getAll = async (req, res, next) => {
+  const groups = await Group.find()
+  res.status(200).json(groups)
+}
+
+module.exports.getMine = async (req, res, next) => {
   const user = await User.findById(req.user._id).populate('groups')
   res.status(200).json(user.groups)
 }
