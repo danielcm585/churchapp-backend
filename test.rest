@@ -36,5 +36,5 @@ DELETE http://localhost:3001/user/logout
 Content-Type: application/json
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1MTBjYWUxZDUzYzM4NWZlM2Q4ZGMiLCJpYXQiOjE2NTcxODc2MjB9.RJX6NSykrktljnV3bO1Bn62YCfqG4WzKUrK1A7eGFd0"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1MTBjYWUxZDUzYzM4NWZlM2Q4ZGMiLCJpYXQiOjE2NTc0MjAxNzZ9.QidHxPY22k8nWWvkdvNNyhqTCdp3tH9IhWpBxrYppCQ"
 }
