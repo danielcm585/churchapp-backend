@@ -30,9 +30,9 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3001/user/62c510cae1d53c385fe3d8dc
+GET http://localhost:3001/group/62b687b9c380dd6fb816a857
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1MTBjYWUxZDUzYzM4NWZlM2Q4ZGMiLCJpYXQiOjE2NTc1OTY5NDMsImV4cCI6MTY1NzU5Nzk0M30.5gll_eZcUy_U9L4_foARRpolDVqcCEUgypOCbmm772w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1MTBjYWUxZDUzYzM4NWZlM2Q4ZGMiLCJpYXQiOjE2NTc2MDA1MzYsImV4cCI6MTY1NzYwMTUzNn0.rtBFKTzBiYFNvtgrR5SkEs9ujfYCEOb3d3uuPAzxqhw
 
 ###
 

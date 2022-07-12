@@ -32,7 +32,7 @@ module.exports.getOne = async (req, res, next) => {
   await group.populate('members','-password')
   await group.populate('pendings','-password')
   await group.populate('invites','-password')
-  await group.populate('top')
+  await group.populate('announcements')
   await group.populate('posts')
   await group.populate('events')
   res.status(200).json(group)
