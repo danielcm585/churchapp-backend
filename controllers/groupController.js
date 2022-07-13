@@ -49,28 +49,30 @@ module.exports.join = async (req, res, next) => {
     for (member of group.members) {
       if (member._id == user._id) continue
       pushNotif({
-        title: `${user.name} has just joined ${group.name}`,
-        body: 'Please welcome our new member',
-        destination: 'Group',
-        link: { group: group._id }
+        title: `${user.name} baru saja bergabung di grup ${group.name}`,
+        body: 'Ayo sambut saudara baru!'
+      }, {
+        page: 'Group',
+        id: group._id
       }, member._id)
     }
     pushNotif({
-      title: `You are accepted to ${group.name}`,
-      body: 'Please introduce yourself to the group',
-      destination: 'Group',
-      link: { group: group._id }
-      // TODO: Give link to group page
+      title: `Permintaan masuk grup ${group.name} anda telah diterima`,
+      body: 'Silakan memperkenalkan diri saudara'
+    }, {
+      page: 'Group',
+      id: group._id
     }, user._id)
   }
   else {
     group.pendings.push(user)
     for (leader of group.leaders) {
       pushNotif({
-        title: `${user.name} requested to join ${group.name}`,
-        body: 'Please accept the new pending member',
-        destination: 'REQUEST',
-        link: { group: group._id, user: user._id }
+        title: `${user.name} meminta untuk bergabung di grup ${group.name}`,
+        body: 'Tolong terima/tolak permintaan merekea'
+      }, {
+        page: 'GroupDetails',
+        id: group._id
       }, leader._id)
     }
   }
@@ -92,16 +94,18 @@ module.exports.acceptUser = async (req, res, next) => {
     if (member._id == user._id) continue
     pushNotif({
       title: `${user.name} has just joined ${group.name}`,
-      body: 'Please welcome our new member',
-      destination: 'GROUP',
-      link: { group: group._id }
+      body: 'Please welcome our new member'
+    }, {
+      page: 'Group',
+      id: group._id
     }, member._id)
   }
   pushNotif({
-    title: `You are accepted to ${group.name}`,
-    body: 'Please introduce yourself to the group',
-    destination: 'GROUP',
-    link: { group: group._id }
+    title: `Permintaan masuk grup ${group.name} anda telah diterima`,
+    body: 'Silakan memperkenalkan diri saudara'
+  }, {
+    destination: 'Group',
+    id: group._id
   }, user._id)
   res.status(200).json('Pending user accepted successfully')
 }
@@ -114,10 +118,9 @@ module.exports.rejectUser = async (req, res, next) => {
   group.pendings.pull(user._id)
   await group.save()
   pushNotif({
-    title: `You are rejected to ${group.name}`,
-    body: 'Please contact the group leaders',
-    destination: 'NONE', // FIXME: Redirect to group leader DM
-  }, user._id)
+    title: `Permintaan masuk grup ${group.name} anda ditolak`,
+    body: 'Hubungi leader grup untuk informasi lebih lanjut'
+  }, null, user._id)
   res.status(200).json('Pending user rejected successfully')
 }
 
@@ -133,10 +136,11 @@ module.exports.acceptGroup = async (req, res, next) => {
   for (member of group.members) {
     if (member._id == user._id) continue
     pushNotif({
-      title: `${user.name} has just joined ${group.name}`,
-      body: 'Please welcome our new member',
-      destination: 'GROUP',
-      link: { group: group._id }
+      title: `${user.name} baru saja bergabung di grup ${group.name}`,
+      body: 'Ayo sambut saudara baru!'
+    }, {
+      page: 'Group',
+      id: group._id
     }, member._id)
   }
   await group.save()
@@ -153,10 +157,11 @@ module.exports.rejectGroup = async (req, res, next) => {
   user.invites.pull(group._id)
   for (leader of group.leaders) {
     pushNotif({
-      title: `${user.name} has just rejected the invitation to ${group.name}`,
-      body: 'Please follow up him/her',
-      destination: 'DIRECT',
-      link: { user: user._id }
+      title: `${user.name} baru saja menolak undangan grup ${group.name}`,
+      body: 'Tolong hubungi mereka kembali'
+    }, {
+      page: 'Profile',
+      id: user._id
     }, leader._id)
   }
   await group.save()
@@ -168,6 +173,13 @@ module.exports.makeLeader = async (req, res, next) => {
   const group = await Group.findById(id)
   if (group.leaders.includes(req.body.user)) return res.status(400).json('Already a leader')
   group.leaders.push(req.body.user)
+  pushNotif({
+    title: `Kamu telah ditunjuk sebagai leader di grup ${group.name}`,
+    body: 'Selamat melayani! Tuhan Yesus memberkati'
+  }, {
+    page: 'GroupDetails',
+    id: group._id
+  }, id)
   await group.save()
   res.status(200).json('Successfully make leader')
 }
@@ -181,10 +193,11 @@ module.exports.invite = async (req, res, next) => {
   await group.save()
   await user.save()
   pushNotif({
-    title: `You are invited to ${group.name}`,
-    body: 'Please accept the invitation',
-    destination: 'INVITATION',
-    link: { group: group._id }
+    title: `Anda menerima undangan ke grup ${group.name}`,
+    body: 'Tolong terima/tolak undangan'
+  }, {
+    page: 'GroupInvites',
+    id: group._id
   }, user._id)
   res.status(200).json('Invitation sent successfully')
 }
@@ -195,10 +208,11 @@ module.exports.leave = async (req, res, next) => {
   const group = await Group.findByIdAndUpdate(id, { $pull: { members: req.user._id } })
   for (leader of group.leaders) {
     pushNotif({
-      title: `${user.name} has just left ${group.name}`,
-      body: 'Please contact him/her immediately',
-      destination: 'DIRECT',
-      link: { user: user._id }
+      title: `${user.name} baru saja meninggalkan grup ${group.name}`,
+      body: 'Segera hubungi mereka'
+    }, {
+      page: 'Profile',
+      id: user._id
     }, leader._id)
   }
   res.status(200).json('Left group successfully')
@@ -215,6 +229,10 @@ module.exports.delete = async (req, res, next) => {
   const { id } = req.params
   const group = await Group.findById(id)
   for (let user of group.members) {
+    pushNotif({
+      title: `Grup ${group.name} telah dihapus`,
+      body: 'Silakan hubungi leader grup untuk informasi lebih lanjut'
+    }, null, user._id) // TODO: Check me!
     await User.findByIdAndUpdate(user._id, { $pull: { groups: id } })
   }
   await group.deleteOne()

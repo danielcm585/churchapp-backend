@@ -6,7 +6,8 @@ const { isLoggedIn } = require('../middleware')
 
 const router = express.Router()
 
-router.post('/all', isLoggedIn, catchAsync(notification.all))
-router.post('/one/:id', isLoggedIn, catchAsync(notification.one))
+router.get('/', isLoggedIn, catchAsync(notification.getAll))
+router.post('/', isLoggedIn, catchAsync(notification.readAll))
+router.post('/:id', isLoggedIn, catchAsync(notification.readOne))
 
 module.exports = router

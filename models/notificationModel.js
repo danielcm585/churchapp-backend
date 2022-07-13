@@ -1,4 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
+
+const Link = require('./linkModel')
 
 const Schema = mongoose.Schema
 
@@ -15,11 +17,10 @@ const notificationSchema = new Schema({
     type: String,
     required: true
   },
-  destination: {
-    type: String,
-    enum: [ 'INVITATION', 'REQUEST', 'GROUP', 'EVENT', 'DIRECT', 'NONE' ]
-  },
-  link: String
+  link: {
+    type: Schema.Types.ObjectId,
+    ref: 'Link'
+  }
 })
 
 module.exports = mongoose.model('Notification', notificationSchema)

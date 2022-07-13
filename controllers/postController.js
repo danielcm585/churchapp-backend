@@ -31,7 +31,6 @@ module.exports.getAll = async (req, res, next) => {
 }
 
 module.exports.getAllMain = async (req, res, next) => {
-  const { id } = req.params
   const posts = await Post.find({ group: process.env.MAIN_GROUP_ID }).populate('creator', '-password')
   res.status(200).json(posts)
 }
