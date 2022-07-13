@@ -8,6 +8,7 @@ const groupRouter = require('./routes/groupRoutes')
 const eventRouter = require('./routes/eventRoutes')
 const postRouter = require('./routes/postRoutes')
 const notificationRouter = require('./routes/notificationRoutes')
+const reportRouter = require('./routes/reportRoutes')
 
 const dbUrl = process.env.DB_URL
 mongoose.connect(dbUrl, { useNewUrlParser: true })
@@ -24,6 +25,7 @@ app.use('/group', groupRouter)
 app.use('/post', postRouter)
 app.use('/event', eventRouter)
 app.use('/notification', notificationRouter)
+app.use('/report', reportRouter)
 
 app.get('/', (req, res) => {
   res.send('API SUCESSFULLY CONNECTED')

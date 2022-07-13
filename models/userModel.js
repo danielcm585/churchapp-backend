@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const Group = require('./groupModel')
+const Report = require('./reportModel')
 
 const Schema = mongoose.Schema
 
@@ -9,6 +10,11 @@ const userSchema = new Schema({
     type: String,
     enum: [ 'ADMIN', 'USER' ],
     default: 'USER'
+  },
+  status: {
+    type: String,
+    enum: [ 'ACTIVE', 'BANNED' ],
+    default: 'ACTIVE'
   },
   username: {
     type: String,
@@ -47,6 +53,10 @@ const userSchema = new Schema({
   notifications: [{
     type: Schema.Types.ObjectId,
     ref: 'Notification'
+  }],
+  reports: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Report'
   }],
   createdAt: {
     type: Date,

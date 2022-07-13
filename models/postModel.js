@@ -2,10 +2,16 @@ const mongoose = require('mongoose')
 
 const User = require('./userModel')
 const Group = require('./groupModel')
+const Report = require('./reportModel')
 
 const Schema = mongoose.Schema
 
 const postSchema = new Schema({
+  status: {
+    type: String,
+    enum: [ 'ACTIVE', 'BANNED' ],
+    default: 'ACTIVE'
+  },
   creator: {
     type: Schema.Types.ObjectId,
     ref: 'User'
@@ -19,6 +25,10 @@ const postSchema = new Schema({
     required: true
   },
   picture: String,
+  reports: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Reports'
+  }],
   createdAt: {
     type: Date,
     default: Date.now()
