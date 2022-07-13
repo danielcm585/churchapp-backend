@@ -196,7 +196,7 @@ module.exports.invite = async (req, res, next) => {
     title: `Anda menerima undangan ke grup ${group.name}`,
     body: 'Tolong terima/tolak undangan'
   }, {
-    page: 'GroupInvites',
+    page: 'Notification',
     id: group._id
   }, user._id)
   res.status(200).json('Invitation sent successfully')
