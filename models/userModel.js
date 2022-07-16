@@ -25,16 +25,7 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  email: {
-    type: String,
-    default: null,
-    index: {
-      unique: true,
-      partialFilterExpression: {
-        email: { $type: String }
-      }
-    }
-  },
+  email: String,
   name: String,
   phone: String,
   address: String,
