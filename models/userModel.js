@@ -21,14 +21,19 @@ const userSchema = new Schema({
     required: true,
     unique: true
   },
-  email: {
-    type: String,
-    unique: true,
-    sparse: true
-  },
   password: {
     type: String,
     required: true
+  },
+  email: {
+    type: String,
+    default: null,
+    index: {
+      unique: true,
+      partialFilterExpression: {
+        email: { $type: String }
+      }
+    }
   },
   name: String,
   phone: String,

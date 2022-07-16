@@ -24,7 +24,7 @@ const postSchema = new Schema({
     type: String,
     required: true
   },
-  picture: String,
+  photo: String,
   reports: [{
     type: Schema.Types.ObjectId,
     ref: 'Reports'

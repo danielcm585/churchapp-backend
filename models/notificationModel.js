@@ -1,7 +1,5 @@
 const mongoose = require('mongoose')
 
-const Link = require('./linkModel')
-
 const Schema = mongoose.Schema
 
 const notificationSchema = new Schema({
@@ -18,8 +16,8 @@ const notificationSchema = new Schema({
     required: true
   },
   link: {
-    type: Schema.Types.ObjectId,
-    ref: 'Link'
+    page: String,
+    id: String
   }
 })
 

@@ -2,11 +2,11 @@ GET http://localhost:3001/
 
 ###
 
-POST http://localhost:3001/user/login
+POST http://localhost:3001/user/register
 Content-Type: application/json
 
 {
-  "username": "danielcm2",
+  "username": "danielcm6",
   "password": "pass123"
 }
 
@@ -25,7 +25,7 @@ POST http://localhost:3001/user/logout
 Content-Type: application/json
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1MTBjYWUxZDUzYzM4NWZlM2Q4ZGMiLCJpYXQiOjE2NTc3MDU0Nzd9.jfJ583Fhw2Ks6kbR6oGMWgDvE82S3l5DC-qH7U8uSVE"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNlZmJmODI0ZWMwNWNjZTIzYjU4ZmQiLCJpYXQiOjE2NTc3MzIwODh9.TO1eLLCfjuPDDdc1rnZz8hvgiS4ZySJW1N3MkYQcki0"
 }
 
 ###

@@ -2,7 +2,7 @@ const User = require('../models/userModel')
 
 module.exports.getAll = async (req, res, next) => {
   const user = await User.findById(req.user._id)
-  user.populate('notifications','link')
+  user.populate('notifications')
   res.status(200).json(user.notifications)
 }
 
