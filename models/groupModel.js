@@ -8,7 +8,7 @@ const Report = require('./reportModel')
 const Schema = mongoose.Schema
 
 const groupSchema = new Schema({
-  status: {
+  activation: {
     type: String,
     enum: [ 'ACTIVE', 'BANNED' ],
     default: 'ACTIVE'

@@ -20,5 +20,13 @@ const reportSchema = new Schema({
     ref: 'Post'
   },
   title: String,
-  body: String
+  body: String,
+  createdAt: {
+    type: Date,
+    default: Date.now()
+  },
+  editedAt: {
+    type: Date,
+    default: Date.now()
+  }
 })

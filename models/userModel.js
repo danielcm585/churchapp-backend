@@ -11,7 +11,7 @@ const userSchema = new Schema({
     enum: [ 'ADMIN', 'USER' ],
     default: 'USER'
   },
-  status: {
+  activation: {
     type: String,
     enum: [ 'ACTIVE', 'BANNED' ],
     default: 'ACTIVE'
