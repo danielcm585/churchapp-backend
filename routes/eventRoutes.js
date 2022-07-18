@@ -1,7 +1,7 @@
 const express = require('express')
 
 const event = require('../controllers/eventController')
-const { catchAsync } = require('../utils');
+const { catchAsync } = require('../utils')
 const { isLoggedIn, isEventCreator, isGroupMember } = require('../middleware');
 
 const router = express.Router()

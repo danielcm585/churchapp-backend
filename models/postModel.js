@@ -7,7 +7,7 @@ const Report = require('./reportModel')
 const Schema = mongoose.Schema
 
 const postSchema = new Schema({
-  status: {
+  activation: {
     type: String,
     enum: [ 'ACTIVE', 'BANNED' ],
     default: 'ACTIVE'
