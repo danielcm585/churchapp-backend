@@ -44,7 +44,7 @@ const groupSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }],
-  announcements: [{
+  pinned: [{
     type: Schema.Types.ObjectId,
     ref: 'Post'
   }],
@@ -52,10 +52,10 @@ const groupSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Post'
   }],
-  events: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Event'
-  }],
+  // events: [{ // TODO: Add featuer later
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Event'
+  // }],
   reports: [{
     type: Schema.Types.ObjectId,
     ref: 'Report'
