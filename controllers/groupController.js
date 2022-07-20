@@ -21,19 +21,13 @@ module.exports.getAll = async (req, res, next) => {
 }
 
 module.exports.getMine = async (req, res, next) => {
-  const user = await User.findById(req.user._id).populate('groups')
+  const user = await User.findById(req.user._id).populate('groups') // TODO: Don't populate
   res.status(200).json(user.groups)
 }
 
 module.exports.getOne = async (req, res, next) => {
   const { id } = req.params
   const group = await Group.findById(id)
-  // await group.populate('leaders','-password')
-  // await group.populate('members','-password')
-  // await group.populate('pendings','-password')
-  // await group.populate('invites','-password')
-  // await group.populate('pinned')
-  // await group.populate('posts')
   // await group.populate('events') // TODO: Add feature later
   res.status(200).json(group)
 }
