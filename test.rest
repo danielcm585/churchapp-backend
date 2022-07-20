@@ -16,7 +16,7 @@ POST http://localhost:3001/user/refresh
 Content-Type: application/json
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1N2ZlYWZkZTZkZDRiMTU2ZGYyMzciLCJpYXQiOjE2NTgyMjU4MDF9.Tcmj6eiUCEYTtyAmhoQ5zi6l8D2FQLAKFZnQAoM8FNc"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1N2ZlYWZkZTZkZDRiMTU2ZGYyMzciLCJpYXQiOjE2NTgyODczOTZ9.JlYzDPlgEPcQ7xqCoqKZiLF9BoG-NKw11NzkqgcrQtA"
 }
 
 ###
@@ -25,14 +25,14 @@ POST http://localhost:3001/user/logout
 Content-Type: application/json
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1N2ZlYWZkZTZkZDRiMTU2ZGYyMzciLCJpYXQiOjE2NTgyMjU4MDF9.Tcmj6eiUCEYTtyAmhoQ5zi6l8D2FQLAKFZnQAoM8FNc"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1N2ZlYWZkZTZkZDRiMTU2ZGYyMzciLCJpYXQiOjE2NTgyODczOTZ9.JlYzDPlgEPcQ7xqCoqKZiLF9BoG-NKw11NzkqgcrQtA"
 }
 
 ###
 
-GET http://localhost:3001/post/one/62c58621c4a1e4253bfd29c7
+GET http://localhost:3001/post/all
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1N2ZlYWZkZTZkZDRiMTU2ZGYyMzciLCJpYXQiOjE2NTgyMjU4MDEsImV4cCI6MTY1ODIyNjgwMX0.T28DX74UTuZfIIua_sGpasfPBqkNf0jpS7VqQIQhnJo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1N2ZlYWZkZTZkZDRiMTU2ZGYyMzciLCJpYXQiOjE2NTgyODczOTYsImV4cCI6MTY1ODI4ODM5Nn0.kZ-8or5BPQDm5ec79Ux7kGzUOipXQuSFztB44fwzXqQ
 
 # {
 #   "name": "Test aja",

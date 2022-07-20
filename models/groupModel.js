@@ -52,7 +52,7 @@ const groupSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Post'
   }],
-  // events: [{ // TODO: Add featuer later
+  // events: [{ // TODO: Add feature later
   //   type: Schema.Types.ObjectId,
   //   ref: 'Event'
   // }],
