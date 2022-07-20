@@ -7,6 +7,10 @@ const Report = require('./reportModel')
 const Schema = mongoose.Schema
 
 const postSchema = new Schema({
+  pinned: {
+    type: Boolean,
+    default: false
+  },
   activation: {
     type: String,
     enum: [ 'ACTIVE', 'BANNED' ],

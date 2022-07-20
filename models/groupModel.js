@@ -44,10 +44,6 @@ const groupSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }],
-  pinned: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Post'
-  }],
   posts: [{
     type: Schema.Types.ObjectId,
     ref: 'Post'
