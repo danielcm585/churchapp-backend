@@ -51,7 +51,7 @@ module.exports.refresh = async (req, res, next) => {
   const refreshToken = req.body.token
   if (!refreshToken) return res.status(401).json('Invalid refresh token')
   const session = await Session.findOne({ token: refreshToken })
-  if (!session) return res.send(403).json('Refresh token not found')
+  if (!session) return res.status(403).json('Refresh token not found')
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN, (err, user) => {
     if (err) return res.send(403).json(err.message)
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN, { expiresIn: '1000s' })

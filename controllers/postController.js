@@ -45,6 +45,12 @@ module.exports.getOne = async (req, res, next) => {
   res.status(200).json(post)
 }
 
+module.exports.pin = async (req, res, next) => {
+  const { id } = req.params
+  const post = await Post.findByIdAndUpdate(id, { pinned: true })
+  res.status(200).json(post)
+}
+
 module.exports.edit = async (req, res, next) => {
   const { id } = req.params
   const post = await Post.findByIdAndUpdate(id, { ...req.body, editedAt: Date.now() })
