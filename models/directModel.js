@@ -6,16 +6,28 @@ const Post = require('./postModel')
 const Schema = mongoose.Schema
 
 const directSchema = new Schema({
-  users: [{
+  pinned: {
+    type: Boolean,
+    default: false
+  },
+  from: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }],
-  chats: [{
+  },
+  to: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  post: {
     type: Schema.Types.ObjectId,
     ref: 'Post'
-  }],
-  pinned: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Post'
-  }]
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now()
+  },
+  editedAt: {
+    type: Date,
+    default: Date.now()
+  }
 })

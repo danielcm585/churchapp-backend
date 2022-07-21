@@ -9,14 +9,14 @@ const User = require('./models/userModel')
 module.exports.isLoggedIn = async (req, res, next) => {
   const authHeader = req.headers.authorization
   const token = authHeader && authHeader.split(' ')[1]
-  if (!token) return res.status(401).json('Not authorized')
+  if (!token) return res.status(401).json('You must be logged in')
   try {
     const user = jwt.verify(token, process.env.TOKEN)
     const userData = await User.findById(user._id)
     req.user = userData
   }
   catch (err) {
-    return res.status(401).json(`Token expired`)
+    return res.status(401).json('Token expired')
   }
   next()
 }
@@ -40,7 +40,7 @@ module.exports.isGroupMember = async (req, res, next) => {
 module.exports.isPostCreator = async (req, res, next) => {
   const { id } = req.params
   const post = await Post.findById(id)
-  if (post.creator != req.user._id)
+  if (post.creator !== req.user._id)
     return res.status(403).json('You are not the post creator')
   next()
 }
@@ -48,13 +48,13 @@ module.exports.isPostCreator = async (req, res, next) => {
 module.exports.isEventCreator = async (req, res, next) => {
   const { id } = req.params
   const event = await Event.findById(id)
-  if (event.creator != req.user._id)
+  if (event.creator !== req.user._id)
     return res.status(403).json('You are not the event creator')
   next()
 }
 
 module.exports.isAdmin = async (req, res, next) => {
-  if (req.user.role != 'ADMIN')
+  if (req.user.role !== 'ADMIN')
     return res.status(403).json('You are not an administrator')
   next()
 }

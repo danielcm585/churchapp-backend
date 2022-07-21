@@ -6,8 +6,8 @@ POST http://localhost:3001/user/login
 Content-Type: application/json
 
 {
-  "username": "admin1",
-  "password": "pass123admin"
+  "username": "danielcm1",
+  "password": "pass123"
 }
 
 ###
@@ -16,7 +16,7 @@ POST http://localhost:3001/user/refresh
 Content-Type: application/json
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1N2ZlYWZkZTZkZDRiMTU2ZGYyMzciLCJpYXQiOjE2NTgyODczOTZ9.JlYzDPlgEPcQ7xqCoqKZiLF9BoG-NKw11NzkqgcrQtA"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNhMzExNTgzZTI0YTQxZWNlNGRiYmMiLCJpYXQiOjE2NTg0MTM4NjR9.prNRLxCyhjjS5K9cE9TBwiJ-h0CTHhrIai1UyGPqAAg"
 }
 
 ###
@@ -25,14 +25,14 @@ POST http://localhost:3001/user/logout
 Content-Type: application/json
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1N2ZlYWZkZTZkZDRiMTU2ZGYyMzciLCJpYXQiOjE2NTgyODczOTZ9.JlYzDPlgEPcQ7xqCoqKZiLF9BoG-NKw11NzkqgcrQtA"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNhMzExNTgzZTI0YTQxZWNlNGRiYmMiLCJpYXQiOjE2NTg0MTM4NjR9.prNRLxCyhjjS5K9cE9TBwiJ-h0CTHhrIai1UyGPqAAg"
 }
 
 ###
 
-GET http://localhost:3001/post/all
+GET http://localhost:3001/group/mine
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1N2ZlYWZkZTZkZDRiMTU2ZGYyMzciLCJpYXQiOjE2NTgyODczOTYsImV4cCI6MTY1ODI4ODM5Nn0.kZ-8or5BPQDm5ec79Ux7kGzUOipXQuSFztB44fwzXqQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNhMzExNTgzZTI0YTQxZWNlNGRiYmMiLCJpYXQiOjE2NTg0MTM4NjQsImV4cCI6MTY1ODQxNDg2NH0.a8cDZc6hn6oYNtc1afr9ZPzKgwuDZl5LgyAl4_Z4jxw
 
 # {
 #   "name": "Test aja",
