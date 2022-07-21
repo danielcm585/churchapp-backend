@@ -41,7 +41,7 @@ module.exports.join = async (req, res, next) => {
     group.members.push(user)
     user.groups.push(group)
     for (member of group.members) {
-      if (member._id == user._id) continue
+      if (member._id === user._id) continue
       pushNotif({
         title: `${user.name} baru saja bergabung di grup ${group.name}`,
         body: 'Ayo sambut saudara baru!',
@@ -88,7 +88,7 @@ module.exports.acceptUser = async (req, res, next) => {
   user.groups.push(group)
   await group.save()
   for (member of group.members) {
-    if (member._id == user._id) continue
+    if (member._id === user._id) continue
     pushNotif({
       title: `${user.name} telah bergabung di grup ${group.name}`,
       body: 'Sambut mereka yang baru bergabung',
@@ -133,7 +133,7 @@ module.exports.acceptGroup = async (req, res, next) => {
   group.members.push(user)
   user.groups.push(group)
   for (member of group.members) {
-    if (member._id == user._id) continue
+    if (member._id === user._id) continue
     pushNotif({
       title: `${user.name} baru saja bergabung di grup ${group.name}`,
       body: 'Ayo sambut saudara baru!',
