@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const Group = require('./groupModel')
 const Report = require('./reportModel')
+const Direct = require('./directModel')
 
 const Schema = mongoose.Schema
 
@@ -45,6 +46,10 @@ const userSchema = new Schema({
   invites: [{
     type: Schema.Types.ObjectId,
     ref: 'Group'
+  }],
+  directs: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Direct'
   }],
   notifications: [{
     type: Schema.Types.ObjectId,

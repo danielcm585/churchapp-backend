@@ -5,6 +5,7 @@ const Group = require('./models/groupModel')
 const Post = require('./models/postModel')
 const Event = require('./models/eventModel')
 const User = require('./models/userModel')
+const Direct = require('./models/directModel')
 
 module.exports.isLoggedIn = async (req, res, next) => {
   const authHeader = req.headers.authorization
@@ -50,6 +51,14 @@ module.exports.isEventCreator = async (req, res, next) => {
   const event = await Event.findById(id)
   if (event.creator !== req.user._id)
     return res.status(403).json('You are not the event creator')
+  next()
+}
+
+module.exports.isTalking = async (req, res, next) => {
+  const { id } = req.params
+  const direct = await Direct.findById(id)
+  if (!direct.members.include(req.user._id))
+    return res.status(403).json('You are not the talking member')
   next()
 }
 
