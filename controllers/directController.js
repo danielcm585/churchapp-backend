@@ -8,7 +8,7 @@ module.exports.create = async (req, res, next) => {
   if (created.length > 0) return res.status(400).json('Already created')
   const direct = new Direct({ members: [ req.user._id, req.body.user ] })
   await direct.save()
-  return 'Direct created successfully'
+  res.status(200).json(direct)
 }
 
 module.exports.chat = async (req, res, next) => {
