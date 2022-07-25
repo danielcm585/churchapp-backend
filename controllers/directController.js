@@ -1,5 +1,5 @@
-const Direct = require('../model/directModel')
-const Post = require('../model/postModel') 
+const Direct = require('../models/directModel')
+const Post = require('../models/postModel') 
 
 module.exports.create = async (req, res, next) => {
   const created = await Direct.find({ 
@@ -29,7 +29,6 @@ module.exports.getOne = async (req, res, next) => {
 }
 
 module.exports.getMine = async (req, res, next) => {
-  const { id } = req.params
   const directs = await Direct.find({ members: { $in: [ req.user._id ] } })
   res.status(200).json(directs)
 }

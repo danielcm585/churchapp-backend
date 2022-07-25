@@ -1,7 +1,7 @@
 const express = require('express')
 
 const direct = require('../controllers/directController')
-const { isLoggedIn } = require('../middleware')
+const { isLoggedIn, isTalking } = require('../middleware')
 const { catchAsync } = require('../utils')
 
 const router = express.Router()
