@@ -6,6 +6,11 @@ const Post = require('./postModel')
 const Schema = mongoose.Schema
 
 const directSchema = new Schema({
+  activation: {
+    type: String,
+    enum: [ 'PENDING', 'ACTIVE', 'SUSPENDED', 'BANNED' ],
+    default: 'ACTIVE'
+  },
   members: [{
     type: Schema.Types.ObjectId,
     ref: 'User'

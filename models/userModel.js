@@ -14,7 +14,7 @@ const userSchema = new Schema({
   },
   activation: {
     type: String,
-    enum: [ 'ACTIVE', 'BANNED' ],
+    enum: [ 'PENDING', 'ACTIVE', 'SUSPENDED', 'BANNED' ],
     default: 'ACTIVE'
   },
   username: {

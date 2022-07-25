@@ -6,6 +6,11 @@ const Group = require('./groupModel')
 const Schema = mongoose.Schema
 
 const eventSchema = new Schema({
+  activation: {
+    type: String,
+    enum: [ 'PENDING', 'ACTIVE', 'SUSPENDED', 'BANNED' ],
+    default: 'ACTIVE'
+  },
   creator: {
     type: Schema.Types.ObjectId,
     ref: 'User'
