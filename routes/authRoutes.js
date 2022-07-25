@@ -7,6 +7,7 @@ const { catchAsync } = require('../utils')
 const router = express.Router()
 
 router.post('/register', catchAsync(auth.register))
+router.post('/verify/:id', catchAsync(auth.verify))
 router.post('/login', catchAsync(auth.login))
 router.post('/refresh', catchAsync(auth.refresh))
 router.post('/logout', catchAsync(auth.logout))

@@ -33,6 +33,12 @@ module.exports.register = async (req, res, next) => {
   }, res)
 }
 
+module.exports.verify = async (req, res, next) => {
+  const { id } = req.params
+  await User.findByIdAndUpdate(id, { activation: 'ACTIVE', editedAt: Date.now() })
+  res.status(200).json('Verification success')
+}
+
 module.exports.login = async (req, res, next) => {
   const user = await User.findOne({ username: req.body.username })
   if (!user) return res.status(403).json('User not found')
