@@ -7,14 +7,10 @@ const sessionSchema = new Schema({
     type: String,
     required: true
   },
-  // startedAt: {
-  //   type: Date,
-  //   default: Date.now(),
-  // },
-  // expiredAt: {
-  //   type: Date,
-  //   required: true
-  // }
+  createdAt: {
+    type: Date,
+    default: Date.now()
+  }
 })
 
 module.exports = mongoose.model('Session', sessionSchema)

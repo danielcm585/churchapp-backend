@@ -6,19 +6,16 @@ const Post = require('./postModel')
 const Schema = mongoose.Schema
 
 const directSchema = new Schema({
-  pinned: {
-    type: Boolean,
-    default: false
+  activation: {
+    type: String,
+    enum: [ 'PENDING', 'ACTIVE', 'SUSPENDED', 'BANNED' ],
+    default: 'ACTIVE'
   },
-  from: {
+  members: [{
     type: Schema.Types.ObjectId,
     ref: 'User'
-  },
-  to: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  post: {
+  }],
+  chats: {
     type: Schema.Types.ObjectId,
     ref: 'Post'
   },
@@ -31,3 +28,5 @@ const directSchema = new Schema({
     default: Date.now()
   }
 })
+
+module.exports = mongoose.model('Direct', directSchema)

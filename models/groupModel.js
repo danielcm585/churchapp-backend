@@ -10,7 +10,7 @@ const Schema = mongoose.Schema
 const groupSchema = new Schema({
   activation: {
     type: String,
-    enum: [ 'ACTIVE', 'BANNED' ],
+    enum: [ 'PENDING', 'ACTIVE', 'SUSPENDED', 'BANNED' ],
     default: 'ACTIVE'
   },
   name: {
@@ -48,10 +48,10 @@ const groupSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Post'
   }],
-  // events: [{ // TODO: Add feature later
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'Event'
-  // }],
+  events: [{ // TODO: Add feature later
+    type: Schema.Types.ObjectId,
+    ref: 'Event'
+  }],
   reports: [{
     type: Schema.Types.ObjectId,
     ref: 'Report'
