@@ -2,7 +2,6 @@ const User = require('../models/userModel')
 const Notification = require('../models/notificationModel')
 
 module.exports.getAll = async (req, res, next) => {
-  console.log(req.user._id)
   const user = await User.findById(req.user._id)
   res.status(200).json(user.notifications)
 }

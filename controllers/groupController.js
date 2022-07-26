@@ -39,7 +39,6 @@ module.exports.join = async (req, res, next) => {
   const { id } = req.params
   const user = await User.findById(req.user._id)
   const group = await Group.findById(id)
-  console.log(group.status)
   if (group.status === 'PUBLIC') {
     group.members.push(user)
     user.groups.push(group)
