@@ -21,7 +21,7 @@ module.exports.getAll = async (req, res, next) => {
 }
 
 module.exports.getMine = async (req, res, next) => {
-  const user = await User.findById(req.user._id).populate('groups') // TODO: Don't populate
+  const user = await User.findById(req.user._id).populate('groups',['_id','name','description','photo']) 
   res.status(200).json(user.groups)
 }
 
