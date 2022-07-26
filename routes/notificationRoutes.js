@@ -9,5 +9,6 @@ const router = express.Router()
 router.post('/', isLoggedIn, catchAsync(notification.readAll))
 router.post('/:id', isLoggedIn, catchAsync(notification.readOne))
 router.get('/', isLoggedIn, catchAsync(notification.getAll))
+router.get('/:id', isLoggedIn, catchAsync(notification.getOne))
 
 module.exports = router
