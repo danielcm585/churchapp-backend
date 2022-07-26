@@ -6,6 +6,12 @@ module.exports.getAll = async (req, res, next) => {
   res.status(200).json(user.notifications)
 }
 
+module.exports.getOne = async (req, res, next) => {
+  const { id } = req.params
+  const notification = await Notification.findById(id)
+  res.status(200).json(notification)
+}
+
 module.exports.readAll = async (req, res, next) => {
   const user = await User.findById(req.user._id)
   for (let notification of user.notifications) {
