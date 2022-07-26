@@ -2,11 +2,11 @@ GET http://localhost:3001/
 
 ###
 
-POST http://localhost:3001/user/login
+POST http://localhost:3001/auth/login
 Content-Type: application/json
 
 {
-  "username": "danielcm1",
+  "username": "danielcm6",
   "password": "pass123"
 }
 
@@ -16,7 +16,7 @@ POST http://localhost:3001/user/refresh
 Content-Type: application/json
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNhMzExNTgzZTI0YTQxZWNlNGRiYmMiLCJpYXQiOjE2NTg0MTM4NjR9.prNRLxCyhjjS5K9cE9TBwiJ-h0CTHhrIai1UyGPqAAg"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmRlNjZhOGEyMDAwYTdkODdjMmVkY2QiLCJpYXQiOjE2NTg4MDY3OTF9.P0QgAUlowghweOJDK6s1ipKK63mUjR_eXWZgEvjxjVg"
 }
 
 ###
@@ -25,19 +25,14 @@ POST http://localhost:3001/user/logout
 Content-Type: application/json
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNhMzExNTgzZTI0YTQxZWNlNGRiYmMiLCJpYXQiOjE2NTg0MTM4NjR9.prNRLxCyhjjS5K9cE9TBwiJ-h0CTHhrIai1UyGPqAAg"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmRlNjZhOGEyMDAwYTdkODdjMmVkY2QiLCJpYXQiOjE2NTg4MDY3OTF9.P0QgAUlowghweOJDK6s1ipKK63mUjR_eXWZgEvjxjVg"
 }
 
 ###
 
-GET http://localhost:3001/group/mine
+GET http://localhost:3001/auth/get-verif
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNhMzExNTgzZTI0YTQxZWNlNGRiYmMiLCJpYXQiOjE2NTg0MTM4NjQsImV4cCI6MTY1ODQxNDg2NH0.a8cDZc6hn6oYNtc1afr9ZPzKgwuDZl5LgyAl4_Z4jxw
-
-# {
-#   "name": "Test aja",
-#   "description": "Halo2"
-# }
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmRlNjZhOGEyMDAwYTdkODdjMmVkY2QiLCJpYXQiOjE2NTg4MDY3OTEsImV4cCI6MTY1ODgwNzc5MX0.Lapeq1KIVtwJvV_xwFrIEcSHu9GCoQT1ySKIpRIFOrQ
 
 ###
 

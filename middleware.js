@@ -17,8 +17,13 @@ module.exports.isLoggedIn = async (req, res, next) => {
     req.user = userData
   }
   catch (err) {
-    return res.status(401).json('Token expired')
+    return res.status(401).json('Token expired')        
   }
+  next()
+}
+
+module.exports.isActive = async (req, res, next) => {
+  if (req.user.activation !== 'ACTIVE') return res.status(401).json('You must activate your account')
   next()
 }
 

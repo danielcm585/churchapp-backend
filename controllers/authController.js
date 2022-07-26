@@ -1,11 +1,14 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+const axios = require('axios')
+const twilio = require('twilio')
 require('dotenv').config()
 
 const User = require('../models/userModel')
 const Group = require('../models/groupModel')
 const Session = require('../models/sessionModel')
 const Notification = require('../models/notificationModel')
+const Verification = require('../models/verificationModel')
 
 module.exports.register = async (req, res, next) => {
   const user = new User({ ...req.body })
@@ -33,10 +36,33 @@ module.exports.register = async (req, res, next) => {
   }, res)
 }
 
+module.exports.getVerif = async (req, res, next) => {
+  try {
+    console.log(req.user)
+    const verification = new Verification({ user: req.user })
+    const client = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN)
+    await client.messages.create({
+      body: `Activate your account by simply clicking on ${process.env.API_URL}/auth/verify/${verification._id}`,
+      to: req.user.phone,
+      from: process.env.SUPPORT_PHONE,
+    })
+    res.status(200).json('Verification link sent')
+  }
+  catch (err) {
+    console.log(err.message)
+    return res.status(500).json(`Error: ${err.message}`)
+  }
+}
+
 module.exports.verify = async (req, res, next) => {
   const { id } = req.params
-  await User.findByIdAndUpdate(id, { activation: 'ACTIVE', editedAt: Date.now() })
-  res.status(200).json('Verification success')
+  const verification = await Verification.findById(id)
+  if (getDifferenceInMinutes(new Date.now(), verification.createdAt) > 5)
+    return res.status(401).json('Verification link expired')
+  const user = await User.findById(verification.user._id)
+  user.acitivation = 'ACTIVE'
+  await user.save()
+  res.status(200).json('User account activated')
 }
 
 module.exports.login = async (req, res, next) => {
