@@ -27,7 +27,6 @@ module.exports.register = async (req, res, next) => {
   user.groups.push(group)
   await group.save()
   await user.save()
-  // res.status(200).json(user)
   this.login({
     body: {
       username: req.body.username,
@@ -38,7 +37,6 @@ module.exports.register = async (req, res, next) => {
 
 module.exports.getVerif = async (req, res, next) => {
   try {
-    console.log(req.user)
     const verification = new Verification({ user: req.user })
     const client = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN)
     await client.messages.create({
