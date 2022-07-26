@@ -15,13 +15,13 @@ module.exports.create = async (req, res, next) => {
 
 module.exports.all = async (req, res, next) => {
   const { id } = req.params
-  const events = await Event.find({ group: id }).populate('creator','-password')
+  const events = await Event.find({ group: id }).populate('creator',['_id','name','photo'])
   res.status(200).json(events)
 }
 
 module.exports.one = async (req, res, next) => {
   const { id } = req.params
-  const event = await Event.findById(id).populate('creator','-password')
+  const event = await Event.findById(id).populate('creator',['_id','name','photo'])
   res.status(200).json(event)
 }
 

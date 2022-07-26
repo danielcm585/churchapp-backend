@@ -21,7 +21,7 @@ module.exports.getAll = async (req, res, next) => {
 }
 
 module.exports.getMine = async (req, res, next) => {
-  const user = await User.findById(req.user._id).populate('groups') // TODO: Don't populate
+  const user = await User.findById(req.user._id).populate('groups',['_id','name','description','photo']) 
   res.status(200).json(user.groups)
 }
 
@@ -49,7 +49,7 @@ module.exports.join = async (req, res, next) => {
         title: `${user.name} baru saja bergabung di grup ${group.name}`,
         body: 'Ayo sambut saudara baru!',
         link: {
-          page: 'Group',
+          page: 'GroupChat',
           id: group._id
         }
       }, member._id)
@@ -58,7 +58,7 @@ module.exports.join = async (req, res, next) => {
       title: `Permintaan masuk grup ${group.name} anda telah diterima`,
       body: 'Silakan memperkenalkan diri saudara',
       link: {
-        page: 'Group',
+        page: 'GroupChat',
         id: group._id
       }
     }, user._id)
@@ -96,7 +96,7 @@ module.exports.acceptUser = async (req, res, next) => {
       title: `${user.name} telah bergabung di grup ${group.name}`,
       body: 'Sambut mereka yang baru bergabung',
       link: {
-        page: 'Group',
+        page: 'GroupChat',
         id: group._id
       }
     }, member._id)
@@ -105,7 +105,7 @@ module.exports.acceptUser = async (req, res, next) => {
     title: `Permintaan masuk grup ${group.name} anda telah diterima`,
     body: 'Silakan memperkenalkan diri saudara',
     link: {
-      page: 'Group',
+      page: 'GroupChat',
       id: group._id
     }
   }, user._id)
@@ -141,7 +141,7 @@ module.exports.acceptGroup = async (req, res, next) => {
       title: `${user.name} baru saja bergabung di grup ${group.name}`,
       body: 'Ayo sambut saudara baru!',
       link: {
-        page: 'Group',
+        page: 'GroupChat',
         id: group._id
       }
     }, member._id)
@@ -163,7 +163,7 @@ module.exports.rejectGroup = async (req, res, next) => {
       title: `${user.name} baru saja menolak undangan grup ${group.name}`,
       body: 'Tolong hubungi mereka kembali',
       link: {
-        page: 'Profile',
+        page: 'ProfileChat',
         id: user._id
       }
     }, leader._id)
@@ -200,9 +200,9 @@ module.exports.invite = async (req, res, next) => {
   pushNotif({
     title: `Anda menerima undangan ke grup ${group.name}`,
     body: 'Tolong terima/tolak undangan',
-    link: {
-      page: 'Notification',
-      id: group._id
+    action: {
+      accept: `${process.env.API_URL}/group/accept-group/${id}`,
+      reject: `${process.env.API_URL}/group/reject-group/${id}`
     }
   }, user._id)
   res.status(200).json('Invitation sent successfully')

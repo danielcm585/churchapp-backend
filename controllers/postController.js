@@ -41,7 +41,7 @@ module.exports.getAllMain = async (req, res, next) => {
 
 module.exports.getOne = async (req, res, next) => {
   const { id } = req.params
-  const post = await Post.findById(id).populate('creator', '-password')
+  const post = await Post.findById(id).populate('creator', ['_id','name','photo'])
   res.status(200).json(post)
 }
 
