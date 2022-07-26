@@ -16,7 +16,7 @@ module.exports.getOne = async (req, res, next) => {
 module.exports.readAll = async (req, res, next) => {
   const user = await User.findById(req.user._id)
   for (let notification of user.notifications) {
-    await Notif.findByIdAndUpdate(notification, { read: true })
+    await Notification.findByIdAndUpdate(notification, { read: true })
   }
   res.status(200).json('All notification read')
 }
