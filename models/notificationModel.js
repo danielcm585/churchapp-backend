@@ -15,6 +15,10 @@ const notificationSchema = new Schema({
     type: String,
     required: true
   },
+  action: {
+    accept: String,
+    reject: String
+  },
   link: {
     page: String,
     id: String
