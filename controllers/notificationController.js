@@ -23,6 +23,6 @@ module.exports.readAll = async (req, res, next) => {
 
 module.exports.readOne = async (req, res, next) => {
   const { id } = await User.findById(req.user._id)
-  await Notif.findByIdAndUpdate(id, { read: true })
+  await Notification.findByIdAndUpdate(id, { read: true })
   res.status(200).json('Notification read successfully')
 }
