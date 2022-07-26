@@ -28,6 +28,10 @@ module.exports.getMine = async (req, res, next) => {
 module.exports.getOne = async (req, res, next) => {
   const { id } = req.params
   const group = await Group.findById(id)
+  group.populate('members','-password')
+  group.populate('leaders','-password')
+  group.populate('pendings','-password')
+  group.populate('invites','-password')
   // await group.populate('events') // TODO: Add feature later
   res.status(200).json(group)
 }
