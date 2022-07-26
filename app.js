@@ -27,7 +27,7 @@ app.use('/user', userRouter)
 app.use('/group', groupRouter)
 app.use('/post', postRouter)
 app.use('/event', eventRouter)
-app.use('/notification', notificationRouter)
+app.use('/notif', notificationRouter)
 app.use('/report', reportRouter)
 app.use('/direct', directRouter)
 
