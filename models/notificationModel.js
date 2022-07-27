@@ -22,6 +22,10 @@ const notificationSchema = new Schema({
   link: {
     page: String,
     id: String
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now()
   }
 })
 
