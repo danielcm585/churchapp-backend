@@ -31,3 +31,5 @@ const prayerSchema = new Schema({
     default: Date.now()
   }
 })
+
+module.exports = mongoose.model('Prayer', prayerSchema)
