@@ -28,10 +28,10 @@ module.exports.getMine = async (req, res, next) => {
 module.exports.getOne = async (req, res, next) => {
   const { id } = req.params
   const group = await Group.findById(id)
-    .populate('members',['_id','name','photo'])
-    .populate('leaders',['_id','name','photo'])
-    .populate('pendings',['_id','name','photo'])
-    .populate('invites',['_id','name','photo'])
+    .populate('members',['_id','name','username','photo'])
+    .populate('leaders',['_id','name','username','photo'])
+    .populate('pendings',['_id','name','username','photo'])
+    .populate('invites',['_id','name','username','photo'])
   res.status(200).json(group)
 }
 
