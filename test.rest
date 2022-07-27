@@ -16,7 +16,7 @@ POST http://localhost:3001/user/refresh
 Content-Type: application/json
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmRlNjZhOGEyMDAwYTdkODdjMmVkY2QiLCJpYXQiOjE2NTg4MDY3OTF9.P0QgAUlowghweOJDK6s1ipKK63mUjR_eXWZgEvjxjVg"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmRlNjZhOGEyMDAwYTdkODdjMmVkY2QiLCJpYXQiOjE2NTg5MDAwMjZ9.d0Fkm6Mhfe-xMG6HHg7xxdl-0_iCqoL_0cClNNanOzI"
 }
 
 ###
@@ -25,14 +25,14 @@ POST http://localhost:3001/user/logout
 Content-Type: application/json
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmRlNjZhOGEyMDAwYTdkODdjMmVkY2QiLCJpYXQiOjE2NTg4MDY3OTF9.P0QgAUlowghweOJDK6s1ipKK63mUjR_eXWZgEvjxjVg"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmRlNjZhOGEyMDAwYTdkODdjMmVkY2QiLCJpYXQiOjE2NTg5MDAwMjZ9.d0Fkm6Mhfe-xMG6HHg7xxdl-0_iCqoL_0cClNNanOzI"
 }
 
 ###
 
-GET http://localhost:3001/auth/get-verif
+GET http://localhost:3001/prayer/all/mine
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmRlNjZhOGEyMDAwYTdkODdjMmVkY2QiLCJpYXQiOjE2NTg4MDY3OTEsImV4cCI6MTY1ODgwNzc5MX0.Lapeq1KIVtwJvV_xwFrIEcSHu9GCoQT1ySKIpRIFOrQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmRlNjZhOGEyMDAwYTdkODdjMmVkY2QiLCJpYXQiOjE2NTg5MDAwMjYsImV4cCI6MTY1ODkwMTAyNn0.Iapn2fl5QnAcjd9UFkvdTxCLDi2uLgZ0vjIvVWBecI0
 
 ###
 
