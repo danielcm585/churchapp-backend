@@ -11,6 +11,7 @@ const postRouter = require('./routes/postRoutes')
 const notificationRouter = require('./routes/notificationRoutes')
 const reportRouter = require('./routes/reportRoutes')
 const directRouter = require('./routes/directRoutes')
+const prayerRouter = require('./routes/prayerRoutes')
 
 const dbUrl = process.env.DB_URL
 mongoose.connect(dbUrl, { useNewUrlParser: true })
@@ -27,9 +28,10 @@ app.use('/user', userRouter)
 app.use('/group', groupRouter)
 app.use('/post', postRouter)
 app.use('/event', eventRouter)
-app.use('/notification', notificationRouter)
+app.use('/notif', notificationRouter)
 app.use('/report', reportRouter)
 app.use('/direct', directRouter)
+app.use('/prayer', prayerRouter)
 
 app.get('/', (req, res) => {
   res.send('API SUCESSFULLY CONNECTED')
