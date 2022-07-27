@@ -79,7 +79,6 @@ module.exports.isPrayerCreator = async (req, res, next) => {
 module.exports.isPrayerCreatorOrAdmin = async (req, res, next) => {
   if (req.user.role === 'ADMIN') next()
   const { id } = req.params
-  console.log(id)
   const prayer = Prayer.findById(id)
   if (req.user._id !== prayer.creator._id) 
     return res.status(403).json('You are not the prayer request creator')
