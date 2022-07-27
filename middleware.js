@@ -77,7 +77,7 @@ module.exports.isPrayerCreator = async (req, res, next) => {
 }
 
 module.exports.isPrayerCreatorOrAdmin = async (req, res, next) => {
-  if (req.user.role !== 'ADMIN') next()
+  if (req.user.role === 'ADMIN') next()
   const { id } = req.params
   const prayer = Prayer.findById(id)
   if (req.user._id !== prayer.creator._id) 
