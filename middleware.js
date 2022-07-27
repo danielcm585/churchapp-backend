@@ -6,6 +6,7 @@ const Post = require('./models/postModel')
 const Event = require('./models/eventModel')
 const User = require('./models/userModel')
 const Direct = require('./models/directModel')
+const Prayer = require('./models/prayerModel')
 
 module.exports.isLoggedIn = async (req, res, next) => {
   const authHeader = req.headers.authorization
@@ -64,6 +65,23 @@ module.exports.isTalking = async (req, res, next) => {
   const direct = await Direct.findById(id)
   if (!direct.members.include(req.user._id))
     return res.status(403).json('You are not the talking member')
+  next()
+}
+
+module.exports.isPrayerCreator = async (req, res, next) => {
+  const { id } = req.params
+  const prayer = Prayer.findById(id)
+  if (req.user._id !== prayer.creator._id) 
+    return res.status(403).json('You are not the prayer request creator')
+  next()
+}
+
+module.exports.isPrayerCreatorOrAdmin = async (req, res, next) => {
+  if (req.user.role !== 'ADMIN') next()
+  const { id } = req.params
+  const prayer = Prayer.findById(id)
+  if (req.user._id !== prayer.creator._id) 
+    return res.status(403).json('You are not the prayer request creator')
   next()
 }
 
