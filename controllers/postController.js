@@ -26,16 +26,16 @@ module.exports.createMain = async (req, res, next) => {
 
 module.exports.getAll = async (req, res, next) => {
   const { id } = req.params
-  const group = await Group.findById(id)
-  const posts = group.posts
-  const pinned = posts.filter(post => post.pinned)
+  const group = await Group.findById(id).populate('posts',['_id','pinned'])
+  const posts = group.posts.map(post => post._id)
+  const pinned = group.posts.filter(post => post.pinned).map(post => post._id)
   res.status(200).json({ posts: posts, pinned: pinned })
 }
 
 module.exports.getAllMain = async (req, res, next) => {
-  const group = await Group.findById(process.env.MAIN_GROUP_ID)
-  const posts = group.posts
-  const pinned = posts.filter(post => post.pinned)
+  const group = await Group.findById(process.env.MAIN_GROUP_ID).populate('posts',['_id','pinned'])
+  const posts = group.posts.map(post => post._id)
+  const pinned = group.posts.filter(post => post.pinned).map(post => post._id)
   res.status(200).json({ posts: posts, pinned: pinned })
 }
 
