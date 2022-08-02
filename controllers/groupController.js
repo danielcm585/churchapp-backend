@@ -47,7 +47,7 @@ module.exports.getOnePublic = async (req, res, next) => {
     events, 
     reports, 
     ...public 
-  } = group
+  } = group._doc
   res.status(200).json(public)
 }
 

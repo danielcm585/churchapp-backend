@@ -30,13 +30,8 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3001/group/accept-user/62dfb95d38ae100fdba44a35 
+GET http://localhost:3001/group/public/62d054e30b8882e3b6889857
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmM1N2ZlYWZkZTZkZDRiMTU2ZGYyMzciLCJpYXQiOjE2NTg5MjU2OTMsImV4cCI6MTY1ODkyNjY5M30.c-36uDm6Z87uCfqeLWexbZ4a0tu9YGdLPqLGytW5VIA
-
-{
-  "user": "62c510cae1d53c385fe3d8dc"
-}
 
 ###
 
