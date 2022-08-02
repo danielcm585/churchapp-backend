@@ -18,6 +18,7 @@ router.post('/leave/:id', isLoggedIn, isGroupMember, catchAsync(group.leave))
 router.get('/', catchAsync(group.getAll))
 router.get('/mine', isLoggedIn, catchAsync(group.getMine))
 router.get('/:id', isLoggedIn, isGroupMember, catchAsync(group.getOne))
+router.get('/public/:id', catchAsync(group.getOnePublic))
 router.put('/:id', isLoggedIn, isGroupLeader, catchAsync(group.edit))
 router.delete('/:id', isLoggedIn, isGroupLeader, catchAsync(group.delete))
 

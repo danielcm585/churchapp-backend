@@ -35,6 +35,22 @@ module.exports.getOne = async (req, res, next) => {
   res.status(200).json(group)
 }
 
+module.exports.getOnePublic = async (req, res, next) => {
+  const { id } = req.params
+  const group = await Group.findById(id)
+    .populate('leaders',['_id','name','username','photo'])
+  const { 
+    members, 
+    pendings, 
+    invites, 
+    posts, 
+    events, 
+    reports, 
+    ...public 
+  } = group
+  res.status(200).json(public)
+}
+
 module.exports.join = async (req, res, next) => {
   const { id } = req.params
   const user = await User.findById(req.user._id)
